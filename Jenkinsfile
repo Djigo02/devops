@@ -16,11 +16,7 @@ pipeline {
         stage('maven clean') {
             steps {
                  script {
-                    if (isUnix()) {
-                        sh 'mvn clean package -e'
-                    } else {
-                        bat 'mvn clean package -e'
-                    }
+                    sh 'mvn clean package -e'
                 }
             }
         }
