@@ -13,10 +13,17 @@ pipeline {
                 git 'https://github.com/Djigo02/devops.git'
             }
         }
+        stage('maven compile') {
+            steps {
+                 script {
+                    sh 'mvn compile'
+                }
+            }
+        }
         stage('maven clean') {
             steps {
                  script {
-                    sh 'mvn clean package -e'
+                    sh 'mvn clean'
                 }
             }
         }
