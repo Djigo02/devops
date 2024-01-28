@@ -15,10 +15,13 @@ pipeline {
         }
         stage('maven clean') {
             steps {
-                 // Run Maven on a Unix agent.
-                sh "mvn clean package -e"
-                // To run Maven on a Windows agent, use
-                // bat "mvn -Dmaven.test.failure.ignore=true clean package"
+                 script {
+                    if (isUnix()) {
+                        sh 'mvn clean package -e'
+                    } else {
+                        bat 'mvn clean package -e'
+                    }
+                }
             }
         }
     }
